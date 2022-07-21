@@ -2,10 +2,12 @@
   "name": "ts-node-mongoose",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "server/index.ts",
   "scripts": {
     "build": "rm -rf build/ && tsc",
     "start": "node build/server.js",
+    "server": "nodemon server/index.ts",
+    
     "tsc": "tsc"
   },
   "author": "",
