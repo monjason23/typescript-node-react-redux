@@ -7,6 +7,7 @@ import testRoutes from './routes/test.routes';
 import userRoutes from './routes/user.routes';
 import postRoutes from './routes/post.routes';
 import commentRoutes from './routes/comment.routes';
+var cors = require('cors')
 
 connectToDb();
 const app = express();
@@ -14,11 +15,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestLog);
+app.use(cors())
 
-app.use('/test', testRoutes);
-app.use('/user', userRoutes);
-app.use('/post', postRoutes);
-app.use('/comment', commentRoutes);
+app.use('/api/test', testRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/post', postRoutes);
+app.use('/api/comment', commentRoutes);
 app.use(errorHandler);
 
 
