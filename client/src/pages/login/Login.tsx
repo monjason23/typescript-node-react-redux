@@ -1,7 +1,8 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { ChangeEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { loginAsync, setEmail, setPassword } from '../../reducers/authSlice';
+import { loginAsync, setEmail, setPassword, logout } from '../../reducers/authSlice';
+
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state) => state.auth);
@@ -29,6 +30,8 @@ const Login: React.FC = () => {
             alt="Workflow"
           />
         </div>
+        <button onClick={() => dispatch(logout())}>lgout</button>
+
         <form className="mt-8 space-y-6" method="POST" onSubmit={onSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">

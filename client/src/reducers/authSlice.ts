@@ -47,7 +47,6 @@ export const authSlice = createSlice({
                 state.user = action.payload;
 
                 localStorage.setItem('userToken', action.payload.token)
-                console.log(localStorage.getItem('userToken'))
             })
             .addCase(loginAsync.rejected, (state) => {
                 state.status = RequestStatus.rejected;
