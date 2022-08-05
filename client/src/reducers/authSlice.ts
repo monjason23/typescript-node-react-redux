@@ -17,7 +17,7 @@ const initialState: IAuthState = {
 }
 
 export const loginAsync = createAsyncThunk('auth/authLogin', async (data: { email: string, password: string }) => {
-    const response = await clientReq.post('/user/login', data, );
+    const response = await clientReq.post('/user/login', data);
     console.log(response)
     return response.data;
 })

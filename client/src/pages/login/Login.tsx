@@ -30,7 +30,6 @@ const Login: React.FC = () => {
             alt="Workflow"
           />
         </div>
-        <button onClick={() => dispatch(logout())}>lgout</button>
 
         <form className="mt-8 space-y-6" method="POST" onSubmit={onSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
