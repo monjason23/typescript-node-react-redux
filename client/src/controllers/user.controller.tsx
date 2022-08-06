@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import { string } from "joi";
 import clientReq from "../utils/api";
 
-interface IUserData {
+export interface IUserData {
     email: string;
     password: string;
     confirmPassword: string;

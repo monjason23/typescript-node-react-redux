@@ -31,10 +31,24 @@ class CommentController {
         const deletedComment = await Comment.findByIdAndDelete(commentId);
 
         if(deletedComment) {
-            console.log(deletedComment.post)
             await Post.findByIdAndUpdate({ _id: postId }, { $pull: { comments: deletedComment._id } })
             res.status(201)
             res.json(deletedComment)
+        } else {
+            res.status(400);
+            throw new Error("Deleting comment failed");
+        }
+    }
+
+    static editComment = async (req: Request, res: Response) => {
+        const { commentId, postId, content } = req.body;
+
+        const updatedComment = await Comment.findByIdAndUpdate(commentId, { content }, { new: true })
+
+        if(updatedComment) {
+            await Post.findByIdAndUpdate({ _id: postId }, { $push: { comments: updatedComment._id } },  { new: true, upsert: true })
+            res.status(201)
+            res.json(updatedComment)
         } else {
             res.status(400);
             throw new Error("Deleting comment failed");

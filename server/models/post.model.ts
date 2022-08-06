@@ -51,6 +51,10 @@ const PostSchema  = new Schema<IPostSchema>({
     timestamps: true
 });
 
+PostSchema.virtual('commentsLength').get(function() {
+    return this.comments.length
+})
+
 const Post = mongoose.model('Post', PostSchema)
 
 export default Post;
