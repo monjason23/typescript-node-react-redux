@@ -20,7 +20,7 @@ class CommentController {
 
     static deleteComment = async (data: Pick<ICommentData, 'postId' | 'commentId'>) => {
         try {
-            const response = await clientReq.post('/comment/delete', data);
+            const response = await clientReq.delete('/comment/delete');
             return response.data;
         } catch(error) {
             const err = error as AxiosError;
@@ -30,7 +30,7 @@ class CommentController {
 
     static editComment = async (data: ICommentData) => {
         try {
-            const response = await clientReq.post('/comment/edit', data);
+            const response = await clientReq.patch('/comment/edit', data);
             return response.data;
         } catch(error) {
             const err = error as AxiosError;

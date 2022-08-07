@@ -8,9 +8,9 @@ const postRouter = express.Router();
 postRouter.use(asyncHandler(AuthMiddleware.protectRoute));
 
 postRouter.post('/create', asyncHandler(PostController.createPost));
-postRouter.delete('/delete/:id', asyncHandler(PostController.deletePost));
-postRouter.put('/update/:id', asyncHandler(PostController.updatePost));
-postRouter.get('/details/:id', asyncHandler(PostController.getPostDetails));
-postRouter.get('/user/:id', asyncHandler(PostController.getUserPosts))
+postRouter.delete('/delete/:postId', asyncHandler(PostController.deletePost));
+postRouter.put('/update/:postId', asyncHandler(PostController.updatePost));
+postRouter.get('/details/:postId', asyncHandler(PostController.getPostDetails));
+postRouter.get('/user/:postId', asyncHandler(PostController.getUserPosts))
 
 export default postRouter;

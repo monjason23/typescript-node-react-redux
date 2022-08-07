@@ -26,13 +26,13 @@ class PostController {
     }
 
     static deletePost = async (req: Request, res: Response) => {
-        const { id } = req.params;
-        if(!id) {
+        const { postId } = req.params;
+        if(!postId) {
             res.status(400);
             throw new Error('Please provide id')
         }
 
-        const deletedPost = await Post.findByIdAndDelete(id);
+        const deletedPost = await Post.findByIdAndDelete(postId);
 
         if(deletedPost) {
             await User.findByIdAndUpdate({ _id: req.user.id }, { $pull : { posts: deletedPost._id } });
@@ -46,13 +46,13 @@ class PostController {
     }
 
     static updatePost = async (req: Request, res: Response) => {
-        const { id } = req.params;
-        if(!id) {
+        const { postId } = req.params;
+        if(!postId) {
             res.status(400);
             throw new Error('Please provide id')
         }
 
-        const updatedPost = await Post.findByIdAndUpdate(id, req.body, { new: true });
+        const updatedPost = await Post.findByIdAndUpdate(postId, req.body, { new: true });
 
         if(updatedPost) {
             res.status(201)
@@ -64,13 +64,14 @@ class PostController {
     }
 
     static getUserPosts = async (req: Request, res: Response) => {
-        const { id } = req.params;
-        if(!id) {
+        const { postId } = req.params;
+        const { userId } = req.body;
+        if(!postId) {
             res.status(400);
             throw new Error('Please provide id')
         }
 
-        const posts = await Post.find({ user: id });
+        const posts = await Post.find({ user: userId });
 
         if(posts) {
             res.status(201)
@@ -82,13 +83,13 @@ class PostController {
     }
 
     static getPostDetails = async (req: Request, res: Response) => {
-        const { id } = req.params;
-        if(!id) {
+        const { postId } = req.params;
+        if(!postId) {
             res.status(400);
             throw new Error('Please provide id')
         }
         
-        const post = await Post.findOne({ id });
+        const post = await Post.findOne({ id: postId });
 
         if(post) {
             res.status(201)

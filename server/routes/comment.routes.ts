@@ -9,5 +9,6 @@ commentRouter.use(asyncHandler(AuthMiddleware.protectRoute));
 
 commentRouter.post('/add', asyncHandler(CommentController.addComment));
 commentRouter.delete('/delete', asyncHandler(CommentController.deleteComment));
+commentRouter.put('/edit', asyncHandler(CommentController.editComment));
 
 export default commentRouter;

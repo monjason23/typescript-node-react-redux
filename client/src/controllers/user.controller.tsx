@@ -29,6 +29,10 @@ class UserController {
             console.log(err.message);
         }
     }
+
+    static logout = async () => {
+        
+    }
 }
 
 
